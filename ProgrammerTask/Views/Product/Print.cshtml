@@ -1,0 +1,18 @@
+﻿@model ProgrammerTask.Reports.ProductDetailsReport
+@using DevExpress.AspNetCore
+@{
+    var viewerRender = Html.DevExpress().WebDocumentViewer("DocumentViewer")
+        .Height("1000px")
+        .Bind(Model).ExportSettings(x =>
+        {
+            x.ShowPrintNotificationDialog = false;
+        });
+    @viewerRender.RenderHtml()
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ReportLibrariesPartial");
+    }
+    @viewerRender.RenderScripts()
+}
